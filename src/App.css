@@ -10,9 +10,23 @@
   text-align: center;
 }
 
+.header {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(19, 19, 19) !important;
+  border-radius: 0px;
+  margin: 20px, 20px;
+  text-align: center;
+  font-size: 50px;
+  color: rgb(255, 255, 255);
+}
+
 .ag-theme-material {
-  height: 90vh !important;
-  width: 1150px;
+  height: 30vh !important;
+  width: 1450px;
   margin: auto !important;
   justify-content: center;
 }
@@ -50,10 +64,111 @@ body {
 }
 
 #trainingGrid {
-  width: 700px !important;
+  width: 870px;
 }
 
 .customHeader {
   font-size: 15px;
   color: black;
+}
+
+.editButton {
+  font-size: 15px !important;
+  background-color: rgb(49, 50, 51) !important;
+  color: rgb(253, 252, 252) !important;
+}
+
+.editButton:hover {
+  border: 2px solid yellow !important;
+  background-color: rgb(49, 50, 51) !important;
+  color: yellow !important;
+}
+
+.deleteButton {
+  font-size: 15px !important;
+  background-color: rgb(49, 50, 51) !important;
+  color: rgb(253, 252, 252) !important;
+}
+
+.deleteButton:hover {
+  background-color: rgb(49, 50, 51) !important;
+  color: #fa0303 !important;
+  border: 2px solid #fa0303 !important;
+}
+
+.addButton {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  width: 100%;
+  height: 50px;
+  font-size: 25px !important;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(49, 50, 51) !important;
+  color: rgb(255, 255, 255) !important;
+  border: 3px solid rgb(255, 255, 255) !important;
+}
+
+.addButton:hover {
+  background-color: rgb(255, 255, 255) !important;
+  color: rgb(49, 50, 51) !important;
+}
+
+@media (min-width: 1450px) {
+  .ag-theme-material {
+    height: 70vh !important;
+    width: 1450px;
+    margin: auto !important;
+    justify-content: center;
+  }
+}
+@media (max-width: 1450px) {
+  .ag-theme-material {
+    height: 70vh !important;
+    width: 1250px;
+    margin: auto !important;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1300px) {
+  .ag-theme-material {
+    height: 70vh !important;
+    width: 1000px;
+    margin: auto !important;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1050px) {
+  .ag-theme-material {
+    height: 70vh !important;
+    width: 700px;
+    margin: auto !important;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 870px) {
+  .ag-theme-material {
+    height: 70vh !important;
+    width: 600px;
+    margin: auto !important;
+    justify-content: center;
+  }
+  #trainingGrid {
+    width: 600px !important;
+  }
+}
+@media (max-width: 600px) {
+  .ag-theme-material {
+    height: 70vh !important;
+    width: 400px;
+    margin: auto !important;
+    justify-content: center;
+  }
+
+  #trainingGrid {
+    width: 400px !important;
+  }
 }

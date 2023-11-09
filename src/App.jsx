@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <div className="App">
+        <div className="header">Personal Trainer App</div>
         <div className="navigation">
           <nav>
             <Link to={"/"} className="link">
