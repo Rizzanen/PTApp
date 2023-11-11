@@ -114,6 +114,24 @@ body {
   color: rgb(49, 50, 51) !important;
 }
 
+.CSVButton {
+  width: 100%;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(49, 50, 51) !important;
+  border: 3px solid rgb(255, 255, 255) !important;
+  font-size: 15px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.CSVButton:hover {
+  background-color: rgb(255, 255, 255) !important;
+  color: rgb(49, 50, 51) !important;
+}
+.calendar {
+  background-color: rgb(255, 255, 255);
+}
+
 @media (min-width: 1450px) {
   .ag-theme-material {
     height: 70vh !important;

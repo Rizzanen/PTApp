@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  onGridReady,
+} from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
@@ -6,9 +12,16 @@ import "../App.css";
 import dayjs from "dayjs";
 import AddTraining from "./AddTraining";
 import DeleteBtnRenderer from "./DeleteButtonRenderer";
+import { Button } from "@mui/material";
 
 function TrainingList() {
   const [trainings, setTrainings] = useState([]);
+
+  const gridRef = useRef();
+
+  const onGridReady = (params) => {
+    gridRef.current = params.api;
+  };
 
   //the data of trainings and customernames are fetched, prosessed and combined into the trainings state.
   useEffect(() => {
@@ -188,6 +201,27 @@ function TrainingList() {
         .catch((err) => console.error(err));
     }
   };
+  //data of the agGrid is taken, file named, button columns field values is parsed off and then its exported as csv.
+  const exportToCSV = () => {
+    if (gridRef.current) {
+      const params = {
+        fileName: "training_data.csv",
+        processCellCallback: (params) => {
+          const column = params.column;
+
+          if (column && column.getColDef().headerName !== "") {
+            return params.value;
+          }
+          return null;
+        },
+      };
+      gridRef.current.exportDataAsCsv(params);
+    }
+  };
+  //call exportToCSV onClick
+  const onClickExport = useCallback(() => {
+    exportToCSV();
+  }, []);
 
   return (
     <div className="ag-theme-material" id="trainingGrid">
@@ -195,10 +229,14 @@ function TrainingList() {
       <AgGridReact
         columnDefs={columns}
         rowData={trainings}
+        onGridReady={onGridReady}
         frameworkComponents={{
           DeleteBtnRenderer: DeleteBtnRenderer,
         }}
       ></AgGridReact>
+      <Button onClick={onClickExport} className="CSVButton">
+        Download as CSV
+      </Button>
     </div>
   );
 }

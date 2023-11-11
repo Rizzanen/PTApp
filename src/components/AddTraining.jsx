@@ -98,7 +98,7 @@ function AddTraining(props) {
               <DateTimePicker
                 label="Choose date"
                 name="date"
-                value={newTraining.date}
+                value={new dayjs(newTraining.date)}
                 onChange={(date) => setNewTraining({ ...newTraining, date })}
                 ampm={false}
               />

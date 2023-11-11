@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  onGridReady,
+} from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
@@ -6,8 +12,15 @@ import "../App.css";
 import AddCustomer from "./AddCustomer";
 import DeleteBtnRenderer from "./DeleteButtonRenderer";
 import EditBtnRenderer from "./EditButtonRenderer";
+import { Button } from "@mui/material";
 
 function CustomerList() {
+  const gridRef = useRef();
+
+  const onGridReady = (params) => {
+    gridRef.current = params.api;
+  };
+
   const [customers, setCustomers] = useState([]);
   //data for agGrid is fetched. Also the selfLink of the customers is added to customers state so it can be accessed in the columns as field value.
   useEffect(() => {
@@ -226,6 +239,27 @@ function CustomerList() {
       })
       .catch((err) => console.error(err));
   };
+  //data of the agGrid is taken, file named, button columns field values is parsed off and then its exported as csv.
+  const exportToCSV = () => {
+    if (gridRef.current) {
+      const params = {
+        fileName: "customer_data.csv",
+        processCellCallback: (params) => {
+          const column = params.column;
+
+          if (column && column.getColDef().headerName !== "") {
+            return params.value;
+          }
+          return null;
+        },
+      };
+      gridRef.current.exportDataAsCsv(params);
+    }
+  };
+  //call exportToCSV onClick
+  const onClickExport = useCallback(() => {
+    exportToCSV();
+  }, []);
 
   return (
     <div className="agGrid">
@@ -234,11 +268,15 @@ function CustomerList() {
         <AgGridReact
           columnDefs={columns}
           rowData={customers}
+          onGridReady={onGridReady}
           frameworkComponents={{
             DeleteBtnRenderer: DeleteBtnRenderer,
             EditBtnRenderer: EditBtnRenderer,
           }}
         ></AgGridReact>
+        <Button onClick={onClickExport} className="CSVButton">
+          Download as CSV
+        </Button>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ function EditCustomer(props) {
     email: "",
     phone: "",
   });
-  // data of the rows customer is fetched and set to state. also open the  from dialog
+  // data of the agGrid rows customer is fetched and set to state which is displayed in the form dialog. also open the  from dialog
   const handleClickOpen = () => {
     fetch(props.customer, {
       method: "GET",
@@ -75,9 +75,9 @@ function EditCustomer(props) {
         Edit
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edit customer</DialogTitle>
+        <DialogTitle>EDIT CUSTOMER</DialogTitle>
         <DialogContent>
-          <InputLabel>firstname</InputLabel>
+          <InputLabel>Firstname</InputLabel>
           <TextField
             type="text"
             onChange={inputChanged}
