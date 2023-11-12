@@ -18,6 +18,9 @@ function App() {
             <Link to={"/trainingCalendar"} className="link">
               Training calendar
             </Link>
+            <Link to={"/statistics"} className="link">
+              Statistics
+            </Link>
           </nav>
         </div>
         <Outlet />

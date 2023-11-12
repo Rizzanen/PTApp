@@ -132,6 +132,16 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+.statistics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.statisticsHeader {
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
 @media (min-width: 1450px) {
   .ag-theme-material {
     height: 70vh !important;

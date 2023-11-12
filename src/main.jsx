@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CustomerList from "./components/customerList.jsx";
 import TrainingList from "./components/TrainingList.jsx";
 import TrainingCalendar from "./components/TrainingCalendar.jsx";
+import Statistics from "./components/Statistics.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "trainingCalendar",
         element: <TrainingCalendar />,
+      },
+      {
+        path: "statistics",
+        element: <Statistics />,
       },
     ],
   },

@@ -26,6 +26,7 @@
     "react-big-calendar": "^1.8.5",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0",
+    "recharts": "^2.9.3",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
