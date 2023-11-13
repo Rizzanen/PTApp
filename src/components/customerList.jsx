@@ -189,7 +189,7 @@ function CustomerList() {
       },
     },
   ];
-  // /customers endpoint call to save new customer to backends database and updating the grid data
+  // /customers endpoint call to save new customer and updating the grid data
   const saveCustomer = (newCustomer) => {
     fetch("https://traineeapp.azurewebsites.net/api/customers", {
       method: "POST",
@@ -200,7 +200,7 @@ function CustomerList() {
       .catch((err) => console.error(err));
   };
 
-  // /customers/{id} call to delete customer from backends database and updating the grid data
+  // /customers/{id} call to delete customer  and updating the grid data
   const deleteCustomer = (customerHref) => {
     if (
       window.confirm(

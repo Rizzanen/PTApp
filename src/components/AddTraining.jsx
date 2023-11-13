@@ -24,26 +24,26 @@ function AddTraining(props) {
   });
 
   const [customers, setCustomers] = useState([]);
-
+  //fetch customer data
   useEffect(() => {
     fetch("https://traineeapp.azurewebsites.net/api/customers")
       .then((response) => response.json())
       .then((data) => setCustomers(data.content))
       .catch((err) => console.error(err));
   }, []);
-
+  //open form
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+  //close form
   const handleClose = () => {
     setOpen(false);
   };
-
+  //save input changes
   const inputChanged = (event) => {
     setNewTraining({ ...newTraining, [event.target.name]: event.target.value });
   };
-
+  //change date to isoString. Check if customer name exists in db and change the customername for the href so it can be linked to the customer in backend.
   const addTraining = () => {
     const selectedDate = newTraining.date;
 
