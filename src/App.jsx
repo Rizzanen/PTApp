@@ -1,6 +1,5 @@
 import "./App.css";
 import { Link, Outlet } from "react-router-dom";
-import { AppBar, Typography, Toolbar } from "@mui/material";
 
 function App() {
   return (
