@@ -29,8 +29,10 @@ function TrainingList() {
           const trainingHref = trainingInfo.links.find(
             (link) => link.rel === "self"
           ).href;
+          var modifyCustomerHref = customerHref.replace("http://", "https://");
+          var modifyTrainingHref = trainingHref.replace("http://", "https://");
 
-          return fetch(customerHref)
+          return fetch(modifyCustomerHref)
             .then((customerResponse) => customerResponse.json())
             .then((customerData) => {
               const { firstname, lastname } = customerData;
@@ -40,8 +42,8 @@ function TrainingList() {
               return {
                 ...trainingInfo,
                 customerName,
-                customerHref,
-                trainingHref,
+                modifyCustomerHref,
+                modifyTrainingHref,
               };
             })
             .catch((customerErr) => {
@@ -61,7 +63,6 @@ function TrainingList() {
 
   //this function fetcehs the data when called
   const fetchUpdatedData = () => {
-    console.log(trainings[0].links[0].href);
     fetch("https://traineeapp.azurewebsites.net/api/trainings")
       .then((response) => response.json())
       .then((data) => {
@@ -69,13 +70,25 @@ function TrainingList() {
           const customerHref = trainingInfo.links.find(
             (link) => link.rel === "customer"
           ).href;
-          return fetch(customerHref)
+          const trainingHref = trainingInfo.links.find(
+            (link) => link.rel === "self"
+          ).href;
+          var modifyCustomerHref = customerHref.replace("http://", "https://");
+          var modifyTrainingHref = trainingHref.replace("http://", "https://");
+
+          return fetch(modifyCustomerHref)
             .then((customerResponse) => customerResponse.json())
             .then((customerData) => {
               const { firstname, lastname } = customerData;
-              const customerName = `${firstname} ${lastname}`;
 
-              return { ...trainingInfo, customerName };
+              const customerName = `${firstname} ${lastname} `;
+
+              return {
+                ...trainingInfo,
+                customerName,
+                modifyCustomerHref,
+                modifyTrainingHref,
+              };
             })
             .catch((customerErr) => {
               console.error(customerErr);
